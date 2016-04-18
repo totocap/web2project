@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>fr.univ.rouen.david</groupId>
+  <groupId>fr.univ.rouen.davtom</groupId>
   <artifactId>web2project</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
@@ -18,56 +18,47 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-   </dependency>
-    
-<dependency>
-	 <groupId>com.hynnet</groupId>
-	 <artifactId>spring-context</artifactId>
-	 <version>4.2.1.RELEASE</version>
-</dependency>
-
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>
-    <version>4.2.5.RELEASE</version>
-</dependency>
-
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-orm</artifactId>
-    <version>4.2.5.RELEASE</version>
-</dependency>
-
-<dependency>
-    <groupId>cglib</groupId>
-    <artifactId>cglib-nodep</artifactId>
-    <version>2.2.2</version>
-</dependency>
-
-<dependency>
-    <groupId>com.hynnet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
-    <version>4.0.0-b01</version>
-</dependency>
-
-<dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>jstl</artifactId>
-    <version>1.2</version>
-  </dependency>
-  
-  <dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.4.1</version>
-</dependency>
-
-  
+	<dependency>
+		 <groupId>com.hynnet</groupId>
+		 <artifactId>spring-context</artifactId>
+		 <version>4.2.1.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>4.2.5.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	    <version>4.2.5.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>cglib</groupId>
+	    <artifactId>cglib-nodep</artifactId>
+	    <version>2.2.2</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>com.hynnet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>4.0.0-b01</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	  </dependency>
+	  
+	  <dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.4.1</version>
+	</dependency>
    </dependencies>
    
 <build>
