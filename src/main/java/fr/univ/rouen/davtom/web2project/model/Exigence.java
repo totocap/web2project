@@ -38,8 +38,8 @@ public class Exigence implements Serializable{
 	
 	@Override
 	 public String toString(){
-		 return "Exigence [identifiant= " + identifiant + ", description=" + description +
-				 ", priorite= " + priorite + "]"; 
+		 return "Exigence \n identifiant :  " + identifiant + ", \n description : " + description +
+				 ", \n priorite : " + priorite + "\n"; 
 	 }
 	 
 }

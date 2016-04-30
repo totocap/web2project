@@ -69,7 +69,7 @@ public class Membre implements Serializable{
 
 	@Override
 	 public String toString(){
-		 return "Membre [nom= " + nom + ", prenom=" + prenom + "]"; 
+		 return " Membre nom : " + nom + ", \n prenom : " + prenom + "\n"; 
 	 }
 	 
 }

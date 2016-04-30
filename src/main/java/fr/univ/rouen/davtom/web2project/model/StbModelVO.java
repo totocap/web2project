@@ -17,28 +17,20 @@ public class StbModelVO implements Serializable{
 	
 	 @XmlAttribute
 	  private Integer id;
-	 
 	 @XmlElement
 	  private String title; 
-	 
 	 @XmlElement
 	  private double version; 
-	 
 	 @XmlElement
 	  private String date; 
-	 
 	 @XmlElement
 	  private String description; 
-	 
 	 @XmlElement
 	  private Client client; 
-	 		 
 	 @XmlElement
 	  private Team team; 
-	 
 	 @XmlElement
 	  private ArrayList<Fonctionnalite> fonctionnalite; 
-	 
 	 @XmlElement
 	  private String commentaire; 
 	 
@@ -56,68 +48,85 @@ public class StbModelVO implements Serializable{
 		 this.team = team;
 		 this.fonctionnalite = fonctionnalite;
 		 this.commentaire = commentaire;
-		 		 
 	 }
 	 
 	 public StbModelVO(){
 		 
 	 }
-	 
-	
-	 
+	 	 
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public ArrayList<Fonctionnalite> getFonctionnalite() {
+		return fonctionnalite;
+	}
+
+	public void setFonctionnalite(ArrayList<Fonctionnalite> fonctionnalite) {
+		this.fonctionnalite = fonctionnalite;
+	}
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+
 	public Client getClient() {
 		return client;
 	}
-
 	public void setClient(Client client) {
 		this.client = client;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public double getVersion() {
 		return version;
 	}
-
 	public void setVersion(double version) {
 		this.version = version;
 	}
-
 	public String getDate() {
 		return date;
 	}
-
 	public void setDate(String date) {
 		this.date = date;
 	}
-
 	public Integer getId() {
 	        return id;
 	    }
-	 
-	    public void setId(Integer id) {
+    public void setId(Integer id) {
 	        this.id = id;
 	    }
-	    
-	    
-	 
-	 public String getDescription() {
+    public String getDescription() {
 			return description;
 		}
 
-		public void setDescription(String description) {
+	public void setDescription(String description) {
 			this.description = description;
 		}
 
 	@Override
 	 public String toString(){
-		 return "StbModelVO [id=" + id + ", description=" + description + "]"; 
-	 }
+		 return "Stb Id : " + id + ",\n"
+				 + "Title : " + title + ",\n"
+				 + "Version : " + version + ",\n"
+				 + "Date : " + date + ",\n"
+				 + "Description : " + description + ",\n"
+				 + "Client : " + client + ",\n"
+				 + "Team : " + team + ",\n"
+				 + "Fonctionnalités : " + fonctionnalite + ",\n"
+				 + "Commentaire : " + commentaire + ",\n";
+	 } 
 	 
 }

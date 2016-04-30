@@ -29,23 +29,5 @@ public class HomeController {
 
 	}
 	
-	/* @RequestMapping(value = "/stbs", method = RequestMethod.GET)
-	    public @ResponseBody StbList getAllStbs() 
-	    {
-	        StbList stbs = new StbList();
-	         
-	        StbModel stb1 = new StbModel(1,"Description1");
-	        StbModel stb2 = new StbModel(2,"Description2");
-	        StbModel stb3 = new StbModel(3,"Description3");
-	         
-	         
-	        stbs.getStb().add(stb1);
-	        stbs.getStb().add(stb2);
-	        stbs.getStb().add(stb3);
-	         
-	        return stbs;
-	    }*/
-	
-	
-	
+		
 }

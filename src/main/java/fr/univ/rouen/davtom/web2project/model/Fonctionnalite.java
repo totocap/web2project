@@ -31,19 +31,14 @@ public class Fonctionnalite implements Serializable{
 		this.description = description;
 		this.exigence = exigence;
 		 }
-	 	 
-	 	 
 	 
 	 public Fonctionnalite(){
 			
 			 }
-	
-
-	
 	@Override
 	 public String toString(){
-		 return "Fonctionalites [priorite= " + priorite + ", description=" + description +
-				 ", exigence= " + exigence + "]"; 
+		 return "Fonctionalite priorite : " + priorite + ",\n description : " + description +
+				 ", \n exigence : " + exigence + "\n"; 
 	 }
 	 
 }

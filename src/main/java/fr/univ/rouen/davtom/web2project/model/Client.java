@@ -14,63 +14,44 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Client implements Serializable{
 	private static final long serialVersionUID = 3L;
 	
-	  
 	 @XmlElement
 	  private String entity; 
-	 
 	 @XmlElement
 	  private Contact contact; 
-	 
 	 @XmlElement
 	  private String codePostal; 
-	 
-	 
-	 	 public Client(String entity,Contact contact,String codePostal){
+		 
+ 	 public Client(String entity,Contact contact,String codePostal){
 		 super();
 		 this.entity = entity;
 		 this.contact = contact;
 		 this.codePostal = codePostal;
-		 }
-	 	 
+	 }
 	 	 	 
 	 public Client(){
-		 
 	 }
-	 
-	 
+	 	 
 	public String getEntity() {
 		return entity;
 	}
-
-
 	public void setEntity(String entity) {
 		this.entity = entity;
 	}
-
-
 	public Contact getContact() {
 		return contact;
 	}
-
-
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-
-
 	public String getCodePostal() {
 		return codePostal;
 	}
-
-
 	public void setCodePostal(String codePostal) {
 		this.codePostal = codePostal;
 	}
-
-
 	@Override
 	 public String toString(){
-		 return "Client [entity=" + entity + ", contact=" + contact + "]"; 
+		 return "Client :\n entity : " + entity + ",\n " + contact + " \n code Postal: " + codePostal; 
 	 }
 	 
 }

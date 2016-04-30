@@ -1,0 +1,12 @@
+fr\univ\rouen\davtom\web2project\model\StbListVO.class
+fr\univ\rouen\davtom\web2project\model\StbModelVO.class
+fr\univ\rouen\davtom\web2project\model\Membre.class
+fr\univ\rouen\davtom\web2project\config\ServletInitializer.class
+fr\univ\rouen\davtom\web2project\model\Exigence.class
+fr\univ\rouen\davtom\web2project\config\AppConfig.class
+fr\univ\rouen\davtom\web2project\model\Client.class
+fr\univ\rouen\davtom\web2project\controller\StbRESTController.class
+fr\univ\rouen\davtom\web2project\controller\HomeController.class
+fr\univ\rouen\davtom\web2project\model\Fonctionnalite.class
+fr\univ\rouen\davtom\web2project\model\Team.class
+fr\univ\rouen\davtom\web2project\model\Contact.class

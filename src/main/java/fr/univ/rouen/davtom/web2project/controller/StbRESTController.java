@@ -127,7 +127,7 @@ public class StbRESTController {
 	        return stbs;
 	    }
 	
-	  @RequestMapping(value = "/stbs/{id}")
+	  @RequestMapping(value = "/resume/{id}")
 	    @ResponseBody
 	    public ResponseEntity<StbModelVO> getStbById (@PathVariable("id") int id) 
 	    {
@@ -167,9 +167,7 @@ public class StbRESTController {
 	        StbModelVO stb1 = new StbModelVO(1,"Stb n°1",1.0,"12/03/2016","Stb du groupe 1",
 	        		client1,membreStb1,fonctStb1,"commentaire de la STB n°1");
 	        
-	            
-	            
-	            
+	           	            
 	            return new ResponseEntity<StbModelVO>(stb1, HttpStatus.OK);
 	            
 	        }

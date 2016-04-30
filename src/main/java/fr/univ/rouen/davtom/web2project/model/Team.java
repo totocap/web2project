@@ -47,9 +47,7 @@ public class Team implements Serializable{
 		String chaine = "";
 		for(int cpt=0;cpt<membre.size();cpt++){
 			chaine+=membre.get(cpt);
-			chaine+=" ";
-			
-			
+			chaine+="";
 		}
 		 return chaine.toString()   ; 
 	 }

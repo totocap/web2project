@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <head>
-<title>Présentation</title>
+<title>Accueil</title>
 </head>
 <body>
 <p>
 		
 		<c:if test="${empty name}">
-			Bienvenu sur la page d'accueil!
+			Bienvenue sur la page d'accueil!
 			<br/>
 			<a href ="http://localhost:8080/web2project/stbs"> Cliquez donc sur ce lien pour visualiser les stbs.</a>
 			<hr/>

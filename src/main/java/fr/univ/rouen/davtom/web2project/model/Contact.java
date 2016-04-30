@@ -69,7 +69,7 @@ public class Contact implements Serializable{
 
 	@Override
 	 public String toString(){
-		 return "Contact [nom= " + nom + ", prenom=" + prenom + "]"; 
+		 return "Contact: nom : " + nom + ", prenom : " + prenom ; 
 	 }
 	 
 }
