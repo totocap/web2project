@@ -33,6 +33,8 @@ public class StbModelVO implements Serializable{
 	  private ArrayList<Fonctionnalite> fonctionnalite; 
 	 @XmlElement
 	  private String commentaire; 
+	 @XmlElement
+	  private Resume resume; 
 	 
 	 
 	 public StbModelVO(Integer id,String title,double version,String date,
@@ -48,9 +50,18 @@ public class StbModelVO implements Serializable{
 		 this.team = team;
 		 this.fonctionnalite = fonctionnalite;
 		 this.commentaire = commentaire;
+		 this.resume = new Resume(id,title,version,date,description);
 	 }
 	 
-	 public StbModelVO(){
+	 public Resume getResume() {
+		return resume;
+	}
+
+	public void setResume(Resume resume) {
+		this.resume = resume;
+	}
+
+	public StbModelVO(){
 		 
 	 }
 	 	 
