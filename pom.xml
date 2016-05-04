@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>fr.univ.rouen.davtom</groupId>
-  <artifactId>web2project</artifactId>
+  <artifactId>web2proj</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>web2project</name>
+  <name>web2proj</name>
   <url>http://maven.apache.org</url>
 	
   <properties>
@@ -54,12 +54,7 @@
 	    <version>1.2</version>
 	  </dependency>
 	  
-	  <dependency>
-	    <groupId>com.fasterxml.jackson.core</groupId>
-	    <artifactId>jackson-core</artifactId>
-	    <version>2.4.1</version>
-	</dependency>
-	  
+	 	  
 	  <dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-databind</artifactId>
@@ -67,10 +62,14 @@
 	</dependency>
 	
 	<dependency>
-		<groupId>com.fasterxml.jackson.dataformat</groupId>
-		<artifactId>jackson-dataformat-xml</artifactId>
-		<version>2.4.1</version>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-core</artifactId>
+	    <version>2.4.1</version>
 	</dependency>
+	
+		
+	
+	
    </dependencies>
    
 <build>

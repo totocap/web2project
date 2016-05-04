@@ -20,14 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import fr.univ.rouen.davtom.web2project.model.Client;
 import fr.univ.rouen.davtom.web2project.model.Contact;
 import fr.univ.rouen.davtom.web2project.model.Exigence;
 import fr.univ.rouen.davtom.web2project.model.Fonctionnalite;
 import fr.univ.rouen.davtom.web2project.model.Membre;
-import fr.univ.rouen.davtom.web2project.model.Resume;
 import fr.univ.rouen.davtom.web2project.model.ResumeList;
 import fr.univ.rouen.davtom.web2project.model.StbListVO;
 import fr.univ.rouen.davtom.web2project.model.StbModelVO;
@@ -187,11 +185,9 @@ public class StbRESTController {
        stbs.getStb().add(stb2);
        stbs.getStb().add(stb3);
        
-       /*resumeList.getResume().add(stb1.getResume());
+       resumeList.getResume().add(stb1.getResume());
        resumeList.getResume().add(stb2.getResume());
-       resumeList.getResume().add(stb3.getResume());*/
-       resumeList.getResume().add(new Resume(stb1.getId(), stb1.getTitle(), stb1.getVersion(), stb1.getDate(), stb1.getDescription()));
-       resumeList.getResume().add(new Resume(stb1.getId(), stb1.getTitle(), stb1.getVersion(), stb1.getDate(), stb1.getDescription()));
+       resumeList.getResume().add(stb3.getResume());
        
        
    }
@@ -208,31 +204,31 @@ public class StbRESTController {
 	    }
 	 
 	 @RequestMapping(value = "/resume")
-	    public @ResponseBody ResponseEntity<ResumeList> getAllStbresume() 
+	    public @ResponseBody ResumeList getAllStbresume() 
 	    {
-	       	initialisation();
-	       	return new ResponseEntity<ResumeList>(resumeList, HttpStatus.OK);
-	        //return resumeList;
+	       	initialisation();         
+	        return resumeList;
 	    }
 	 
-	@RequestMapping(value = "/maxId")
-    public @ResponseBody ResponseEntity<Integer> getMaxID() 
-    {
-       	initialisation();
-       	int maxId = 0;
-       	for (StbModelVO stb : stbs.getStb()) {
-       		if (stb.getId() > maxId) {
-       			maxId = stb.getId();
-       		}
-       	}
-       	
-       	return new ResponseEntity<Integer>(maxId, HttpStatus.OK);
-    }
+	 @RequestMapping(value = "/maxId")
+	    public @ResponseBody ResponseEntity<Integer> getMaxID() 
+	    {
+	       	initialisation();
+	       	int maxId = 0;
+	       	for (StbModelVO stb : stbs.getStb()) {
+	       		if (stb.getId() > maxId) {
+	       			maxId = stb.getId();
+	       		}
+	       	}
+	       	
+	       	return new ResponseEntity<Integer>(maxId, HttpStatus.OK);
+	    }
 	
 	  @RequestMapping(value = "/resume/{id}")
 	    @ResponseBody
 	    public ResponseEntity<StbModelVO> getStbById (@PathVariable("id") int id) 
 	    {
+		  initialisation();
 	        if (id == 1) {
 	               	            return new ResponseEntity<StbModelVO>(stb1, HttpStatus.OK);
 	              }
@@ -246,35 +242,6 @@ public class StbRESTController {
 	    }
 	  
 	  
-  @RequestMapping(value = "/depot", method = RequestMethod.POST)
-  public ResponseEntity<String> createEmployee(@RequestBody StbModelVO stb) 
-  {
-	  String path = "StbTest.xml";
-	  File file = new File(path);
-	  XmlMapper xmlMapper = new XmlMapper();
-	  try {
-		xmlMapper.writeValue(file, stb);
-		
-		SchemaFactory factory = 
-	            SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        Schema schema;
-		try {
-			schema = factory.newSchema(new StreamSource("WEB-INF/resources/stb6.xsd"));
-			Validator validator = schema.newValidator();
-			validator.validate(new StreamSource(path));
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new ResponseEntity<String>("Erreur dans la validation XSD.", HttpStatus.NOT_FOUND);
-		}
-		  
-		// Validé
-		System.out.println(stb);
-		return new ResponseEntity<String>("Stb ajoutée avec l'ID " + stb.getId(), HttpStatus.OK);
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return new ResponseEntity<String>("Erreur dans la validation XSD.", HttpStatus.NOT_FOUND);
-	}
-  }
+	 
+	 
 }

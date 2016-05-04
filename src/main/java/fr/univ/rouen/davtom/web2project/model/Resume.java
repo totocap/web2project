@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement (name="resume")
+@XmlRootElement (name="stb")
 @XmlAccessorType(XmlAccessType.NONE)
 
 public class Resume implements Serializable{
