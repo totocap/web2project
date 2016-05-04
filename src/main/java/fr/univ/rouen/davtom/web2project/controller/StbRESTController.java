@@ -256,7 +256,6 @@ public class StbRESTController {
 			 String s = "";
 			 for(ConstraintViolation<StbModelVO> violation : constraintViolations) 
 			 {
-				 
 			    s += violation.getPropertyPath().toString() + " " + violation.getMessage() + "\n";
 			 }
 			 return new ResponseEntity<String>(s, HttpStatus.OK);
