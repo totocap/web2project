@@ -39,7 +39,7 @@ public class Exigence implements Serializable{
 	@Override
 	 public String toString(){
 		 return "Exigence \n identifiant :  " + identifiant + ", \n description : " + description +
-				 ", \n priorite : " + priorite + "\n"; 
+				 ", \n priorite : " + priorite; 
 	 }
 	 
 }

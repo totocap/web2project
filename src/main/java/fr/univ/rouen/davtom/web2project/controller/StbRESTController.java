@@ -1,14 +1,14 @@
 package fr.univ.rouen.davtom.web2project.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
-import javax.xml.XMLConstants;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.xml.sax.SAXException;
-
 
 import fr.univ.rouen.davtom.web2project.model.Client;
 import fr.univ.rouen.davtom.web2project.model.Contact;
@@ -195,6 +193,13 @@ public class StbRESTController {
 	
 	
 	
+   private static Validator validator;
+   
+   public StbRESTController() {
+	   ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	   validator = factory.getValidator();
+   }
+   
 
 	 @RequestMapping(value = "/stbs")
 	    public @ResponseBody StbListVO getAllStbs() 
@@ -242,6 +247,22 @@ public class StbRESTController {
 	    }
 	  
 	  
-	 
+	 @RequestMapping(value = "/depot", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<String> postStb(@RequestBody StbModelVO stb) 
+    {
+		 Set<ConstraintViolation<StbModelVO>> constraintViolations =
+			      validator.validate( stb );
+		 if (constraintViolations.size() > 0) {
+			 String s = "";
+			 for(ConstraintViolation<StbModelVO> violation : constraintViolations) 
+			 {
+				 
+			    s += violation.getPropertyPath().toString() + " " + violation.getMessage() + "\n";
+			 }
+			 return new ResponseEntity<String>(s, HttpStatus.OK);
+		 }
+		 
+       	return new ResponseEntity<String>("Stb d'index " + stb.getId() + " ajoutee.", HttpStatus.CREATED);
+    }
 	 
 }

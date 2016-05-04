@@ -3,6 +3,10 @@ package fr.univ.rouen.davtom.web2project.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -16,15 +20,19 @@ public class Fonctionnalite implements Serializable{
 	private static final long serialVersionUID = 7L;
 	
 	@XmlAttribute
-	  private Integer priorite;
+	@Min(1)
+	@Max(10)
+	private int priorite;
 	
 	@XmlElement
-	  private String description;
+	private String description;
 	
 	@XmlElement
-	  private ArrayList<Exigence> exigence;
+	@NotNull
+	@Size(min = 2)
+	private ArrayList<Exigence> exigence;
 
-	 public Fonctionnalite(Integer priorite,String description,
+	public Fonctionnalite(Integer priorite,String description,
 			 ArrayList<Exigence> exigence){
 		super();
 		this.priorite = priorite;
@@ -38,7 +46,7 @@ public class Fonctionnalite implements Serializable{
 	@Override
 	 public String toString(){
 		 return "Fonctionalite priorite : " + priorite + ",\n description : " + description +
-				 ", \n exigence : " + exigence + "\n"; 
+				 ", \n exigence : " + exigence; 
 	 }
 	 
 }

@@ -3,11 +3,16 @@ package fr.univ.rouen.davtom.web2project.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.Range;
 
 @XmlRootElement (name="stb")
 @XmlAccessorType(XmlAccessType.NONE)
@@ -20,16 +25,23 @@ public class StbModelVO implements Serializable{
 	 @XmlElement
 	  private String title; 
 	 @XmlElement
+	 @Range(min = 1, max = 3)
 	  private double version; 
 	 @XmlElement
 	  private String date; 
 	 @XmlElement
 	  private String description; 
 	 @XmlElement
+	 @NotNull
+	 @Valid
 	  private Client client; 
 	 @XmlElement
+	 @Valid
 	  private Team team; 
 	 @XmlElement
+	 @NotNull
+	 @Size(min = 1)
+	 @Valid
 	  private ArrayList<Fonctionnalite> fonctionnalite; 
 	 @XmlElement
 	  private String commentaire; 
@@ -137,7 +149,7 @@ public class StbModelVO implements Serializable{
 				 + "Client : " + client + ",\n"
 				 + "Team : " + team + ",\n"
 				 + "Fonctionnalités : " + fonctionnalite + ",\n"
-				 + "Commentaire : " + commentaire + ",\n";
+				 + "Commentaire : " + commentaire;
 	 } 
 	 
 }
