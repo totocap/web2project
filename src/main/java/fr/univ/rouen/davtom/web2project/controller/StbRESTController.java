@@ -1,8 +1,6 @@
 package fr.univ.rouen.davtom.web2project.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -28,6 +26,7 @@ import fr.univ.rouen.davtom.web2project.model.ResumeList;
 import fr.univ.rouen.davtom.web2project.model.StbListVO;
 import fr.univ.rouen.davtom.web2project.model.StbModelVO;
 import fr.univ.rouen.davtom.web2project.model.Team;
+import fr.univ.rouen.davtom.web2project.service.EntityManagerConnectionService;
 
 @RestController
 public class StbRESTController {
@@ -198,6 +197,10 @@ public class StbRESTController {
    public StbRESTController() {
 	   ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	   validator = factory.getValidator();
+	   
+	   // Peristence
+	   EntityManagerConnectionService.setPath(this.getClass().getClassLoader().getResource("META-INF/persistence.xml").getPath());
+	   EntityManagerConnectionService.getInstance();
    }
    
 

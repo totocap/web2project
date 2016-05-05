@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="web2project">
+		<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+		<class>fr.univ.rouen.davtom.web2project.model.StbModelVO</class>
+		<properties>
+			<!-- Login et password -->
+			<property name="javax.persistence.jdbc.password" value="tJ8q3mymo-S5cUza2oBGvGbYUn" />
+			<property name="javax.persistence.jdbc.user" value="dhtcrtiaxiinug" />
+
+			<!-- MySQL -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+
+			<!-- Adresse -->
+			<property name="javax.persistence.jdbc.url" value="postgres://dhtcrtiaxiinug:tJ8q3mymo-S5cUza2oBGvGbYUn@ec2-50-16-229-45.compute-1.amazonaws.com:5432/d5nq8c0i1q8dnh" />
+			<property name="eclipselink.jdbc.native-sql" value="false" />
+
+			<!-- Creation Base de données -->
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="javax.persistence.schema-generation.database.action"
+				value="create" />
+			<property name="eclipselink.temporal.mutable" value="true" />
+
+		</properties>
+	</persistence-unit>
+</persistence>

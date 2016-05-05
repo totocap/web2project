@@ -3,6 +3,9 @@ package fr.univ.rouen.davtom.web2project.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,37 +19,51 @@ import org.hibernate.validator.constraints.Range;
 
 @XmlRootElement (name="stb")
 @XmlAccessorType(XmlAccessType.NONE)
-
+@Entity
+@NamedQuery(name = "StbModelVO.findAll", query = "SELECT c FROM StbModelVO c")
+@Table(name = StbModelVO.tableName)
 public class StbModelVO implements Serializable{
 	private static final long serialVersionUID = 2L;
 	
-	 @XmlAttribute
-	  private Integer id;
-	 @XmlElement
-	  private String title; 
-	 @XmlElement
-	 @Range(min = 1, max = 3)
-	  private double version; 
-	 @XmlElement
-	  private String date; 
-	 @XmlElement
-	  private String description; 
-	 @XmlElement
-	 @NotNull
-	 @Valid
-	  private Client client; 
-	 @XmlElement
-	 @Valid
-	  private Team team; 
-	 @XmlElement
-	 @NotNull
-	 @Size(min = 1)
-	 @Valid
-	  private ArrayList<Fonctionnalite> fonctionnalite; 
-	 @XmlElement
-	  private String commentaire; 
+	public static final String tableName = "StbModelVO";
 	
-	  private Resume resume; 
+	
+	@XmlAttribute
+	private Integer id;
+	
+	@XmlElement
+	private String title; 
+	 
+	@XmlElement
+	@Range(min = 1, max = 3)
+	private double version;
+	 
+	@XmlElement
+	private String date;
+	 
+	@XmlElement
+	private String description;
+	 
+	@XmlElement
+	@NotNull
+	@Valid
+	private Client client;
+	 
+	@XmlElement
+	@Valid
+	private Team team;
+	 
+	@XmlElement
+	@NotNull
+	@Size(min = 1)
+	@Valid
+	private ArrayList<Fonctionnalite> fonctionnalite;
+	 
+	@XmlElement
+	private String commentaire;
+	 
+	
+	private Resume resume; 
 	 
 	 
 	 public StbModelVO(Integer id,String title,double version,String date,
