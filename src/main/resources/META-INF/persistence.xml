@@ -13,14 +13,15 @@
 		<class>fr.univ.rouen.davtom.web2project.model.StbModelVO</class>
 		<properties>
 			<!-- Login et password -->
-			<property name="javax.persistence.jdbc.password" value="web2project" />
-			<property name="javax.persistence.jdbc.user" value="web2project_user" />
+			<property name="javax.persistence.jdbc.password" value="tJ8q3mymo-S5cUza2oBGvGbYUn" />
+			<property name="javax.persistence.jdbc.user" value="dhtcrtiaxiinug" />
 
 			<!-- Postgres -->
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 
 			<!-- Adresse -->
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/testwebproject" />
+			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/testwebproject" /> -->
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-50-16-229-45.compute-1.amazonaws.com:5432/d5nq8c0i1q8dnh" />
 			<property name="eclipselink.jdbc.native-sql" value="false" />
 
 			<!-- Creation Base de données -->

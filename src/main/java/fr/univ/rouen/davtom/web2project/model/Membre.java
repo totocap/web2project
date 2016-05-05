@@ -12,6 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -30,6 +31,7 @@ public class Membre implements Serializable{
 	@Column(name = "id")
     private long id;
 	
+	@XmlAttribute
 	@Column(name = "GENDER")
 	  private boolean gender;
 	
@@ -37,6 +39,7 @@ public class Membre implements Serializable{
 	 @Column(name = "NOM")
 	  private String nom; 
 	 
+	 @XmlElement
 	 @Column(name = "PRENOM")
 	  private String prenom; 
 	 
