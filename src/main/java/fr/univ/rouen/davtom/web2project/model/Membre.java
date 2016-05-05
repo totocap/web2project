@@ -2,28 +2,46 @@ package fr.univ.rouen.davtom.web2project.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.springframework.beans.factory.annotation.Required;
-
 @XmlRootElement (name="membre")
 @XmlAccessorType(XmlAccessType.NONE)
-
+@Entity
+@NamedQuery(name = "Membre.findAll", query = "SELECT c FROM Membre c")
+@Table(name = Membre.tableName)
 public class Membre implements Serializable{
 	private static final long serialVersionUID = 4L;
 	
-	@XmlAttribute
+	public static final String tableName = "Membre";
+	
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "id")
+    private long id;
+	
+	@Column(name = "GENDER")
 	  private boolean gender;
 	
 	 @XmlElement
+	 @Column(name = "NOM")
 	  private String nom; 
 	 
-	 @XmlElement
+	 @Column(name = "PRENOM")
 	  private String prenom; 
+	 
+	 @ManyToOne
+	 private Team team;
 	 
 	 	 public Membre(Boolean gender,String nom,String prenom){
 		 super();
@@ -38,6 +56,9 @@ public class Membre implements Serializable{
 	 }
 	 
 	 
+	public void setTeam(Team t) {
+		team = t;
+	}
 
 	public boolean getGender() {
 		return gender;

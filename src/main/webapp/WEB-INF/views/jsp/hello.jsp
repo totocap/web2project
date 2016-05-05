@@ -8,11 +8,11 @@
 <p>
 		
 		<c:if test="${empty name}">
-			Bienvenue sur la page d'accueil!
+			Bienvenue sur la page d'accueil !
 			<br/>
 			<a href ="http://localhost:8080/web2project/stbs"> Cliquez donc sur ce lien pour visualiser les stbs.</a>
 			<hr/>
-			<p> membres du projet : Capet Thomas et Mellet David. </p>
+			<p> Membres du projet : Capet Thomas et Mellet David. </p>
 			
 		</c:if>
 		<c:if test="${not empty name}">

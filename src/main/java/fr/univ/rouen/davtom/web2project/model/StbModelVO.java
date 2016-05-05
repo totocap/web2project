@@ -2,9 +2,17 @@ package fr.univ.rouen.davtom.web2project.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -29,46 +37,53 @@ public class StbModelVO implements Serializable{
 	
 	
 	@XmlAttribute
+	@Id
+	@Column(name = "id")
 	private Integer id;
 	
 	@XmlElement
+	@Column(name = "title")
 	private String title; 
 	 
 	@XmlElement
 	@Range(min = 1, max = 3)
+	@Column(name = "version")
 	private double version;
 	 
 	@XmlElement
+	@Column(name = "date")
 	private String date;
 	 
 	@XmlElement
+	@Column(name = "description")
 	private String description;
 	 
 	@XmlElement
 	@NotNull
 	@Valid
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH })
 	private Client client;
 	 
 	@XmlElement
 	@Valid
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH })
 	private Team team;
 	 
 	@XmlElement
 	@NotNull
 	@Size(min = 1)
 	@Valid
-	private ArrayList<Fonctionnalite> fonctionnalite;
+	@OneToMany(mappedBy="stb", cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH })
+	private List<Fonctionnalite> fonctionnalite;
 	 
 	@XmlElement
+	@Column(name = "commentaire")
 	private String commentaire;
-	 
-	
-	private Resume resume; 
 	 
 	 
 	 public StbModelVO(Integer id,String title,double version,String date,
 			 String description,Client client,Team team,
-			 ArrayList<Fonctionnalite> fonctionnalite, String commentaire){
+			 List<Fonctionnalite> fonctionnalite, String commentaire){
 		 super();
 		 this.id = id;
 		 this.title = title;
@@ -77,17 +92,15 @@ public class StbModelVO implements Serializable{
 		 this.description = description;
 		 this.client = client;
 		 this.team = team;
+		 for (Fonctionnalite f : fonctionnalite) {
+			 f.setStb(this);
+		 }
 		 this.fonctionnalite = fonctionnalite;
 		 this.commentaire = commentaire;
-		 this.resume = new Resume(id,title,version,date,description);
 	 }
 	 
 	 public Resume getResume() {
-		return resume;
-	}
-
-	public void setResume(Resume resume) {
-		this.resume = resume;
+		return new Resume(id,title,version,date,description);
 	}
 
 	public StbModelVO(){
@@ -102,7 +115,7 @@ public class StbModelVO implements Serializable{
 		this.team = team;
 	}
 
-	public ArrayList<Fonctionnalite> getFonctionnalite() {
+	public List<Fonctionnalite> getFonctionnalite() {
 		return fonctionnalite;
 	}
 

@@ -1,8 +1,10 @@
 package fr.univ.rouen.davtom.web2project.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Query;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -102,7 +104,7 @@ public class StbRESTController {
        		exgsFonct2Stb1 = new ArrayList<Exigence>();
        		exgsFonct2Stb1.add(exg1Fonct2Stb1);
        		exgsFonct2Stb1.add(exg2Fonct2Stb1);
-       		f2Stb1 = new Fonctionnalite(7, "Retirer membre",exgsFonct1Stb1);
+       		f2Stb1 = new Fonctionnalite(7, "Retirer membre",exgsFonct2Stb1);
        		fonctStb1.add(f2Stb1);
        		
       		//Equipe composé de membres
@@ -122,12 +124,6 @@ public class StbRESTController {
       // STB N°2
     // Fonctionnalités
 	   fonctStb2 = new ArrayList<Fonctionnalite>();
-		// Exigence Fonctionnelle n°1
-		exg1Fonct1Stb2 = new Exigence("e112", "première exigence", 8);
-		exgsFonct1Stb2 = new ArrayList<Exigence>();
-		exgsFonct1Stb2.add(exg1Fonct1Stb2);
-		f1Stb2 = new Fonctionnalite(3, "Edition comptes utilisateurs ",exgsFonct1Stb2);
-		fonctStb2.add(f1Stb2);
 		// Exigence Fonctionnelle n°2
 		exg1Fonct2Stb2 = new Exigence("e122", "première exigence", 3);
 		exg2Fonct2Stb2 = new Exigence("e222", "seconde exigence", 4);
@@ -178,13 +174,37 @@ public class StbRESTController {
        stb3 = new StbModelVO(3,"Stb n°3",2.0,"17/03/2016","Stb du groupe 3",
       	client3,membreStb3,fonctStb3,"commentaire de la STB n°3");
         	        
+       try {
+			EntityManagerConnectionService.getInstance().getTransaction().begin();
+			EntityManagerConnectionService.getInstance().persist(stb1);
+			EntityManagerConnectionService.getInstance().getTransaction().commit();
+		} catch(Exception e1) {
+			EntityManagerConnectionService.getInstance().getTransaction().rollback();
+		}
+       
+       try {
+			EntityManagerConnectionService.getInstance().getTransaction().begin();
+			EntityManagerConnectionService.getInstance().persist(stb2);
+			EntityManagerConnectionService.getInstance().getTransaction().commit();
+		} catch(Exception e1) {
+			EntityManagerConnectionService.getInstance().getTransaction().rollback();
+		}
+       
+       try {
+			EntityManagerConnectionService.getInstance().getTransaction().begin();
+			EntityManagerConnectionService.getInstance().persist(stb3);
+			EntityManagerConnectionService.getInstance().getTransaction().commit();
+		} catch(Exception e1) {
+			EntityManagerConnectionService.getInstance().getTransaction().rollback();
+		}
+       
        stbs.getStb().add(stb1);
        stbs.getStb().add(stb2);
        stbs.getStb().add(stb3);
        
-       resumeList.getResume().add(stb1.getResume());
-       resumeList.getResume().add(stb2.getResume());
-       resumeList.getResume().add(stb3.getResume());
+       resumeList.addResume(stb1.getResume());
+       resumeList.addResume(stb2.getResume());
+       resumeList.addResume(stb3.getResume());
        
        
    }
@@ -198,63 +218,85 @@ public class StbRESTController {
 	   ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 	   validator = factory.getValidator();
 	   
-	   // Peristence
+	   // Persistence
 	   EntityManagerConnectionService.setPath(this.getClass().getClassLoader().getResource("META-INF/persistence.xml").getPath());
-	   EntityManagerConnectionService.getInstance();
+	   EntityManagerConnectionService.getInstance(); 
+	  
+	   //initialisation();
    }
-   
 
-	 @RequestMapping(value = "/stbs")
-	    public @ResponseBody StbListVO getAllStbs() 
-	    {
-	       	initialisation();         
-	        return stbs;
-	    }
+	@RequestMapping(value = "/stbs")
+    public @ResponseBody ResponseEntity<StbListVO> getAllStbs() 
+    {
+		try {
+			EntityManagerConnectionService.getInstance().getTransaction().begin();
+			Query query = EntityManagerConnectionService.getInstance().createQuery("SELECT s FROM StbModelVO s");
+			List<StbModelVO> stbs = (List<StbModelVO>) query.getResultList();
+			StbListVO stbList = new StbListVO();
+			stbList.setStb(stbs);
+			EntityManagerConnectionService.getInstance().getTransaction().commit();
+			return new ResponseEntity<StbListVO>(stbList, HttpStatus.OK);
+		  } catch(Exception e) {
+			EntityManagerConnectionService.getInstance().getTransaction().rollback();
+			return new ResponseEntity<StbListVO>(HttpStatus.NOT_FOUND);
+		  }
+    }
 	 
-	 @RequestMapping(value = "/resume")
-	    public @ResponseBody ResumeList getAllStbresume() 
-	    {
-	       	initialisation();         
-	        return resumeList;
-	    }
+	@RequestMapping(value = "/resume")
+    public @ResponseBody ResponseEntity<ResumeList> getAllStbresume() 
+    {
+		try {
+			EntityManagerConnectionService.getInstance().getTransaction().begin();
+			Query query = EntityManagerConnectionService.getInstance().createQuery("SELECT s FROM StbModelVO s");
+			List<StbModelVO> stbs = (List<StbModelVO>) query.getResultList();
+			ResumeList rL = new ResumeList();
+			for (StbModelVO stb : stbs) {
+				rL.addResume(stb.getResume());
+			}
+			EntityManagerConnectionService.getInstance().getTransaction().commit();
+			return new ResponseEntity<ResumeList>(rL, HttpStatus.OK);
+		  } catch(Exception e) {
+			EntityManagerConnectionService.getInstance().getTransaction().rollback();
+			return new ResponseEntity<ResumeList>(HttpStatus.NOT_FOUND);
+		  }
+    }
 	 
-	 @RequestMapping(value = "/maxId")
-	    public @ResponseBody ResponseEntity<Integer> getMaxID() 
-	    {
-	       	initialisation();
-	       	int maxId = 0;
-	       	for (StbModelVO stb : stbs.getStb()) {
-	       		if (stb.getId() > maxId) {
-	       			maxId = stb.getId();
-	       		}
-	       	}
-	       	
-	       	return new ResponseEntity<Integer>(maxId, HttpStatus.OK);
-	    }
+	@RequestMapping(value = "/maxId")
+    public @ResponseBody ResponseEntity<Integer> getMaxID() 
+    {
+		try {
+			EntityManagerConnectionService.getInstance().getTransaction().begin();
+			Query query = EntityManagerConnectionService.getInstance().createQuery("SELECT MAX(s.id) FROM StbModelVO s");
+			Integer maxId = (Integer) query.getSingleResult();
+			EntityManagerConnectionService.getInstance().getTransaction().commit();
+			return new ResponseEntity<Integer>(maxId, HttpStatus.OK);
+		  } catch(Exception e) {
+			  return new ResponseEntity<Integer>(1, HttpStatus.OK);
+		  }
+    }
 	
-	  @RequestMapping(value = "/resume/{id}")
-	    @ResponseBody
-	    public ResponseEntity<StbModelVO> getStbById (@PathVariable("id") int id) 
-	    {
-		  initialisation();
-	        if (id == 1) {
-	               	            return new ResponseEntity<StbModelVO>(stb1, HttpStatus.OK);
-	              }
-	        if (id == 2) {
-   	            return new ResponseEntity<StbModelVO>(stb2, HttpStatus.OK);
-  }
-	        if (id == 3) {
-   	            return new ResponseEntity<StbModelVO>(stb3, HttpStatus.OK);
-  }
-	        return new ResponseEntity(HttpStatus.NOT_FOUND);
-	    }
+	@RequestMapping(value = "/resume/{id}")
+    @ResponseBody
+    public ResponseEntity<StbModelVO> getStbById (@PathVariable("id") int id) 
+    {
+	  try {
+		EntityManagerConnectionService.getInstance().getTransaction().begin();
+		Query query = EntityManagerConnectionService.getInstance().createQuery("SELECT s FROM StbModelVO s WHERE s.id = :id");
+		query.setParameter("id", id);
+		StbModelVO stb = (StbModelVO) query.getSingleResult();
+		EntityManagerConnectionService.getInstance().getTransaction().commit();
+		return new ResponseEntity<StbModelVO>(stb, HttpStatus.OK);
+	  } catch(Exception e) {
+		EntityManagerConnectionService.getInstance().getTransaction().rollback();
+		return new ResponseEntity<StbModelVO>(HttpStatus.NOT_FOUND);
+	  }
+    }
 	  
 	  
 	 @RequestMapping(value = "/depot", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<String> postStb(@RequestBody StbModelVO stb) 
     {
-		 Set<ConstraintViolation<StbModelVO>> constraintViolations =
-			      validator.validate( stb );
+		 Set<ConstraintViolation<StbModelVO>> constraintViolations = validator.validate( stb );
 		 if (constraintViolations.size() > 0) {
 			 String s = "";
 			 for(ConstraintViolation<StbModelVO> violation : constraintViolations) 
@@ -263,6 +305,15 @@ public class StbRESTController {
 			 }
 			 return new ResponseEntity<String>(s, HttpStatus.OK);
 		 }
+		 
+		
+		/*try {
+			EntityManagerConnectionService.getInstance().getTransaction().begin();
+			EntityManagerConnectionService.getInstance().persist(stb);
+			EntityManagerConnectionService.getInstance().getTransaction().commit();
+		} catch(Exception e1) {
+			EntityManagerConnectionService.getInstance().getTransaction().rollback();
+		}*/
 		 
        	return new ResponseEntity<String>("Stb d'index " + stb.getId() + " ajoutee.", HttpStatus.CREATED);
     }

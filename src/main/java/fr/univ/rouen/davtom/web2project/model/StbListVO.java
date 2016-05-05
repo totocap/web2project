@@ -8,7 +8,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement (name="stbs")
 public class StbListVO {
 		
-	private List<StbModelVO> stbs = new ArrayList<StbModelVO>();
+	private List<StbModelVO> stbs;
+	
+	public StbListVO() {
+		stbs = new ArrayList<StbModelVO>();
+	}
 	
 	public List<StbModelVO> getStb(){
 		return stbs;
