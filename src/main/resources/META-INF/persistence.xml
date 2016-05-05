@@ -3,7 +3,6 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="web2project">
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>fr.univ.rouen.davtom.web2project.model.Membre</class>
 		<class>fr.univ.rouen.davtom.web2project.model.Exigence</class>
 		<class>fr.univ.rouen.davtom.web2project.model.Contact</class>
@@ -12,23 +11,20 @@
 		<class>fr.univ.rouen.davtom.web2project.model.Fonctionnalite</class>
 		<class>fr.univ.rouen.davtom.web2project.model.StbModelVO</class>
 		<properties>
-			<!-- Login et password -->
-			<property name="javax.persistence.jdbc.password" value="tJ8q3mymo-S5cUza2oBGvGbYUn" />
-			<property name="javax.persistence.jdbc.user" value="dhtcrtiaxiinug" />
-
-			<!-- Postgres -->
-			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-
-			<!-- Adresse -->
-			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/testwebproject" /> -->
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-50-16-229-45.compute-1.amazonaws.com:5432/d5nq8c0i1q8dnh" />
-			<property name="eclipselink.jdbc.native-sql" value="false" />
-
-			<!-- Creation Base de données -->
-			<property name="eclipselink.ddl-generation" value="create-tables" />
-			<property name="javax.persistence.schema-generation.database.action" value="create" />
-			<property name="eclipselink.temporal.mutable" value="true" />
-
+			<!--  Login et password  -->
+			<property name="javax.persistence.jdbc.password" value="dwuq4jqpJuvZ9ioeOCldM9KAs2"/>
+			<property name="javax.persistence.jdbc.user" value="vtfnooqiydgjzo"/>
+			<!--  MySQL  -->
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+			<!--  Adresse  -->
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-54-243-243-135.compute-1.amazonaws.com:5432/dbnko35ak782go"/>
+			<property name="eclipselink.jdbc.native-sql" value="false"/>
+			<!--
+			 Creation Base de données ! create-or-extend-tables OR drop-and-create-tables ! 
+			-->
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<property name="javax.persistence.schema-generation.database.action" value="create"/>
+			<property name="eclipselink.temporal.mutable" value="true"/>
 		</properties>
 	</persistence-unit>
 </persistence>

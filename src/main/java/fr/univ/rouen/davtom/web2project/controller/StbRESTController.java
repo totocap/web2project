@@ -41,7 +41,7 @@ public class StbRESTController {
 
 		// Persistence
 		EntityManagerConnectionService
-				.setPath(this.getClass().getClassLoader().getResource("META-INF/persistence.xml").getPath());
+				.setPath(getClass().getClassLoader().getResource("META-INF/persistence.xml").getPath());
 		EntityManagerConnectionService.getInstance();
 
 		stbs = new ArrayList<StbModelVO>();
@@ -137,20 +137,19 @@ public class StbRESTController {
 
 		return new ResponseEntity<String>("Stb d'index " + stb.getId() + " ajoutee.", HttpStatus.CREATED);
 	}
-	
+
 	private void saveStb(int id) {
 		Long res = -1L;
 		try {
 			EntityManagerConnectionService.getInstance().getTransaction().begin();
 			Query query = EntityManagerConnectionService.getInstance()
 					.createQuery("SELECT COUNT(s) FROM StbModelVO s WHERE s.id = :id");
-			query.setParameter("id",  id);
+			query.setParameter("id", id);
 			res = (Long) query.getSingleResult();
 			EntityManagerConnectionService.getInstance().getTransaction().commit();
 		} catch (Exception e) {
 			EntityManagerConnectionService.getInstance().getTransaction().rollback();
 		}
-		
 
 		if (res == 0) {
 			try {
