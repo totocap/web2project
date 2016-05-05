@@ -9,23 +9,23 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement (name="stb")
+@XmlRootElement(name = "stb")
 @XmlAccessorType(XmlAccessType.NONE)
 
-public class Resume implements Serializable{
+public class Resume implements Serializable {
 	private static final long serialVersionUID = 12L;
 
-	 @XmlAttribute
-	  private Integer id;
-	 @XmlElement
-	  private String title; 
-	 @XmlElement
-	  private double version; 
-	 @XmlElement
-	  private String date; 
-	 @XmlElement
-	  private String description;
-	 
+	@XmlAttribute
+	private Integer id;
+	@XmlElement
+	private String title;
+	@XmlElement
+	private double version;
+	@XmlElement
+	private String date;
+	@XmlElement
+	private String description;
+
 	public Resume(Integer id, String title, double version, String date, String description) {
 		super();
 		this.id = id;
@@ -33,10 +33,10 @@ public class Resume implements Serializable{
 		this.version = version;
 		this.date = date;
 		this.description = description;
-	} 
-	
-	public Resume(){
-		
+	}
+
+	public Resume() {
+
 	}
 
 	public Integer getId() {
@@ -81,15 +81,8 @@ public class Resume implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Resume : id = " + id + ", "
-				+ "title = " + title + ", "
-				+ "version = " + version + ", "
-				+ "date = " + date + ", \n"
-				+ "description = "
-				+ description + "]";
+		return "Resume : id = " + id + ", " + "title = " + title + ", " + "version = " + version + ", " + "date = "
+				+ date + ", \n" + "description = " + description + "]";
 	}
-	 
-	
-	 
-	 
+
 }

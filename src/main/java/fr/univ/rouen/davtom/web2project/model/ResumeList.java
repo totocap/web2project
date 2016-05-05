@@ -6,24 +6,23 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement (name="resumes")
+@XmlRootElement(name = "resumes")
 public class ResumeList {
-	@XmlElement
 	private List<Resume> resumes;
 
 	public ResumeList() {
 		resumes = new ArrayList<Resume>();
 	}
-	
-	public List<Resume> getResume(){
+
+	public List<Resume> getResume() {
 		return resumes;
 	}
-	
-	public void addResume(Resume resume){
+
+	public void addResume(Resume resume) {
 		this.resumes.add(resume);
 	}
-	
-	public void setResume(List<Resume> resume){
+
+	public void setResume(List<Resume> resume) {
 		this.resumes = resume;
 	}
 

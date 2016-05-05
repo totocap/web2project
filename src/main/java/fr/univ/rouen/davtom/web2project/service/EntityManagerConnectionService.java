@@ -34,10 +34,9 @@ public class EntityManagerConnectionService {
 				System.err.println(e.getMessage());
 			}
 		}
-		
+
 		return em;
 	}
-	
 
 	private static String getPersistanceName() {
 		try {
@@ -54,7 +53,6 @@ public class EntityManagerConnectionService {
 
 		}
 	}
-
 
 	public static String getPath() {
 		return path;

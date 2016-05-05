@@ -10,10 +10,9 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = {"fr.univ.rouen.davtom.web2project"})
-public class AppConfig extends WebMvcConfigurerAdapter{
-	
-		
+@ComponentScan(basePackages = { "fr.univ.rouen.davtom.web2project" })
+public class AppConfig extends WebMvcConfigurerAdapter {
+
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -22,6 +21,5 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-
 
 }
